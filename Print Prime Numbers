@@ -1,0 +1,28 @@
+DECLARE @X INT = 0;
+DECLARE @OUTPUT VARCHAR(8000);
+
+WHILE @X <= 1000
+BEGIN
+--PRINT @X;
+DECLARE @Y INT = 2;
+
+    While @Y < @X
+    BEGIN
+ --   PRINT CONCAT('Y',  @Y) ;
+        IF @X % @Y > 0 
+            SET @Y = @Y + 1;
+        ELSE
+            SET @Y = @X + 5;
+    END
+--PRINT CONCAT('Y = ',  @Y , ' X = ', @X) ;
+IF @Y = @X
+    BEGIN
+    SET @OUTPUT = CONCAT(@OUTPUT , @X , '&' )
+    END
+       
+SET @X = @X + 1;
+
+END;
+SET @OUTPUT = SUBSTRING(@OUTPUT, 1 , LEN(@OUTPUT)-1)
+PRINT @OUTPUT;
+GO
